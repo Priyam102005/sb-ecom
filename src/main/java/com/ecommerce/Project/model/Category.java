@@ -1,20 +1,35 @@
 package com.ecommerce.Project.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity(name = "categories")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long CategoryId ;
-    private String CategoryName ;
+    private  Long categoryId ;
 
-    public Category(Long categoryId, String categoryName) {
-        this.CategoryId = categoryId;
-        this.CategoryName = categoryName;
+    @NotBlank( message = " should not be blank")
+    @Size(min = 5 , message = " Category name must  conatin atleast 5 characters ")
+    private String categoryName ;
+
+    @OneToMany(mappedBy = "category" ,cascade = CascadeType.ALL)
+    private List<Product> products ;
+
+
+
+  /*  public Category(Long categoryId, String categoryName) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
     public Category() {
@@ -22,18 +37,21 @@ public class Category {
     }
 
     public Long getCategoryId() {
-        return CategoryId;
+        return categoryId;
     }
 
     public void setCategoryId(Long categoryId) {
-        CategoryId = categoryId;
+        this.categoryId = categoryId;
     }
 
     public String getCategoryName() {
-        return CategoryName;
+        return categoryName;
     }
 
     public void setCategoryName(String categoryName) {
-        CategoryName = categoryName;
+
+        this.categoryName = categoryName;
     }
+
+   */
 }

@@ -1,4 +1,4 @@
-package com.ecommerce.Project.security.jwt;
+package com.ecommerce.Project.security.request;
 
 public class LoginRequest {
     private String username ;
@@ -20,3 +20,5 @@ public class LoginRequest {
         this.password = password;
     }
 }
+
+

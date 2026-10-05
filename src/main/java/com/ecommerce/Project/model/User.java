@@ -31,10 +31,10 @@ public class User {
     @Column(name = "username")
     private String userName ;
 
-    public User(String userName, String password, String email) {
+    public User(String userName, String email, String password) {
         this.userName = userName;
-        this.password = password;
         this.email = email;
+        this.password = password;
     }
 
     @NotBlank
